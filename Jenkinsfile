@@ -1,5 +1,4 @@
 #!/bin/groovy
-
 	//import groovy.json.*
     def server = Artifactory.server 'ART'
     def rtMaven = Artifactory.newMavenBuild()
@@ -44,9 +43,7 @@
 
 pipeline {
     agent any
-	tools {
-	        jdk 'Java8'
-	    }
+
     stages {
         stage('Checkout') {
             steps {
