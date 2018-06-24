@@ -66,7 +66,7 @@ pipeline {
 	        	withSonarQubeEnv('SonarQube Server') {
 	        		//sh "mvn sonar:sonar"
 	        		script {
-	        			rtMaven.run pom: 'pom.xml', goals: 'clean'
+	        			echo "Hello"
 	        		}
 	        	}
         	}
