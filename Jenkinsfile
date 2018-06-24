@@ -1,9 +1,5 @@
 #!/bin/groovy
 	//import groovy.json.*
-    def server = Artifactory.server 'ART'
-    def rtMaven = Artifactory.newMavenBuild()
-    def releaseRepo = 'generic-local'
-    def buildInfo
 	def notifySuccess() {
 		emailext (
 			subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
@@ -47,16 +43,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'root@master:/prog/cac/git/cacin-lizard.git', branch: 'release_branch'
+                git url: 'https://github.com/vinss1/NewSampleApplication.git', branch: 'master'
             }
         }
 	    stage ('Artifactory configuration') {
 	    	steps {
 	    		script {
-			        rtMaven.tool = 'maven' // Tool name from Jenkins configuration
-			        rtMaven.deployer releaseRepo: releaseRepo, server: server
-			        buildInfo = Artifactory.newBuildInfo()
-			        buildInfo.env.capture = true
+			        print "artifactory"
 			    }
 	        }
 	    }
@@ -64,7 +57,7 @@ pipeline {
             steps {
 				//sh "mvn clean package -Dbuild.number=${env.BUILD_NUMBER}"
 	    		script {
-	        		rtMaven.run pom: 'pom.xml', goals: 'clean package -Dbuild.number=${env.BUILD_NUMBER}', buildInfo: buildInfo
+	        		rtMaven.run pom: 'pom.xml', goals: 'clean ', buildInfo: buildInfo
 	        	}
             }
         }
@@ -73,7 +66,7 @@ pipeline {
 	        	withSonarQubeEnv('SonarQube Server') {
 	        		//sh "mvn sonar:sonar"
 	        		script {
-	        			rtMaven.run pom: 'pom.xml', goals: 'sonar:sonar'
+	        			rtMaven.run pom: 'pom.xml', goals: 'clean'
 	        		}
 	        	}
         	}
@@ -82,9 +75,7 @@ pipeline {
         	steps {
 	        	timeout(time: 1, unit: 'HOURS') {
 		        	script {
-		        		def qg = waitForQualityGate()
-		        		if (qg.status != 'OK') {
-		        			error "Pipeline aborted due to SonarQube quality gate failure: ${qg.status}"
+		        	echo "Hello"
 		        		}
 		        	}
 	        	}
@@ -108,7 +99,7 @@ pipeline {
 	    stage ('Publish build info to Artifactory') {
 	    	steps {
 	    		script {
-	        		server.publishBuildInfo buildInfo
+	        	echo "Hello"
 	        	}
 	        }
 	    }
@@ -122,8 +113,9 @@ pipeline {
         stage('Build docker image and upload to docker repository') {
             steps {
                 sh "cd ${env.WORKSPACE}"
-                sh "ansible-playbook -i 'master,' ansible/lizardbasketapiimage.yml --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE} WAR_PATH=target'"
-            }
+              #  sh "ansible-playbook -i 'master,' ansible/lizardbasketapiimage.yml --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE} WAR_PATH=target'"
+							sh "echo hi"
+						}
         }
         stage('Promotion to FT/UAT') {
             steps {
@@ -131,23 +123,18 @@ pipeline {
                 //input message: 'Deploy to FT/UAT?', submitter: 'user_uat_1'
                 echo 'Deploy docker image to FT/UAT'
                 sh "cd ${env.WORKSPACE}"
-                sh "ansible-playbook -i 'master,' ansible/lizardbasketapicontainer.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER}'"
+								sh "echo hello"
+                #sh "ansible-playbook -i 'master,' ansible/lizardbasketapicontainer.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER}'"
             }
         }
         stage('Test webservice') {
             steps {
                 sh "cd ${env.WORKSPACE}"
-                sh "ansible-playbook -i 'master,' ansible/test.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE}'"
+								sh "echo hi"
+                #sh "ansible-playbook -i 'master,' ansible/test.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE}'"
             }
         }
-        stage('Promotion to Production Cluster') {
-            steps {
-                input message: 'Deploy to Production Cluster?', submitter: 'emdnakh'
-                echo 'Deploy docker image to production cluster'
-                sh "cd ${env.WORKSPACE}"
-                sh "ansible-playbook -i 'manager,' ansible/lizardbasketapiswarm.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE}'"
-            }
-        }
+      
     }
 	post {
         //success {
