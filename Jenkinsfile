@@ -61,7 +61,7 @@ pipeline {
 	        	}
             }
         }
-        
+
 	    //stage ('Upload articats to Artifactory') {
 	    	//steps {
 	    		//script {
@@ -77,8 +77,7 @@ pipeline {
 			    //}
 	        //}
 	    //}
-
-
+}
 	post {
         //success {
         	//script {
@@ -91,4 +90,3 @@ pipeline {
         	}
         }
     }
-}
