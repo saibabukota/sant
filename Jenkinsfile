@@ -96,45 +96,8 @@ pipeline {
 			    //}
 	        //}
 	    //}
-	    stage ('Publish build info to Artifactory') {
-	    	steps {
-	    		script {
-	        	echo "Hello"
-	        	}
-	        }
-	    }
-	    stage ('Email build package download link') {
-	    	steps {
-	    		script {
-	    			emailDownloadLink(server.url+'/'+releaseRepo+'/'+buildInfo.deployableArtifacts.get(0).artifactPath)
-	        	}
-	        }
-	    }
-        stage('Build docker image and upload to docker repository') {
-            steps {
-                sh "cd ${env.WORKSPACE}"
-              sh "echo hi"
-						}
-        }
-        stage('Promotion to FT/UAT') {
-            steps {
-            	input message: 'Deploy to FT/UAT?', submitter: 'emdnakh'
-                //input message: 'Deploy to FT/UAT?', submitter: 'user_uat_1'
-                echo 'Deploy docker image to FT/UAT'
-                sh "cd ${env.WORKSPACE}"
-								sh "echo hello"
 
-            }
-        }
-        stage('Test webservice') {
-            steps {
-                sh "cd ${env.WORKSPACE}"
-								sh "echo hi"
 
-            }
-        }
-
-    
 	post {
         //success {
         	//script {
