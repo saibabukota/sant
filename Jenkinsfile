@@ -113,8 +113,7 @@ pipeline {
         stage('Build docker image and upload to docker repository') {
             steps {
                 sh "cd ${env.WORKSPACE}"
-              #  sh "ansible-playbook -i 'master,' ansible/lizardbasketapiimage.yml --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE} WAR_PATH=target'"
-							sh "echo hi"
+              sh "echo hi"
 						}
         }
         stage('Promotion to FT/UAT') {
@@ -124,17 +123,17 @@ pipeline {
                 echo 'Deploy docker image to FT/UAT'
                 sh "cd ${env.WORKSPACE}"
 								sh "echo hello"
-                #sh "ansible-playbook -i 'master,' ansible/lizardbasketapicontainer.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER}'"
+
             }
         }
         stage('Test webservice') {
             steps {
                 sh "cd ${env.WORKSPACE}"
 								sh "echo hi"
-                #sh "ansible-playbook -i 'master,' ansible/test.yml -u root --extra-vars 'BUILD_NUMBER=${env.BUILD_NUMBER} WORKSPACE=${env.WORKSPACE}'"
+
             }
         }
-      
+
     }
 	post {
         //success {
