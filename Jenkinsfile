@@ -61,26 +61,7 @@ pipeline {
 	        	}
             }
         }
-        stage('SonarQube Analysis'){
-        	steps {
-	        	withSonarQubeEnv('SonarQube Server') {
-	        		//sh "mvn sonar:sonar"
-	        		script {
-	        			echo "Hello"
-	        		}
-	        	}
-        	}
-        }
-        stage('Quality Gate'){
-        	steps {
-	        	timeout(time: 1, unit: 'HOURS') {
-		        	script {
-		        	echo "Hello"
-		        		}
-		        	}
-	        	}
-	        }
-        }
+        
 	    //stage ('Upload articats to Artifactory') {
 	    	//steps {
 	    		//script {
