@@ -57,7 +57,7 @@ pipeline {
             steps {
 				//sh "mvn clean package -Dbuild.number=${env.BUILD_NUMBER}"
 	    		script {
-	        		rtMaven.run pom: 'pom.xml', goals: 'clean ', buildInfo: buildInfo
+	        		sh "echo hello"
 	        	}
             }
         }
