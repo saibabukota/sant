@@ -11,6 +11,20 @@ package com.company.project;
 		def commitMessage = sh (script: "git log --format=%B -n 1  ", returnStdout: true)
 		return commitMessage
 	}
+	
+	
+	public def buildSourceCode() {
+		echo "Building the Source code. executing script from Common repo ... "
+	}
+	public def executeUnitTests() {
+		echo "Executing the Unit tests. executing script from Common repo ... "
+	}
+	public def uploadToArtifactory() {
+		echo "Uploading to Artifactory. executing script from Common repo ... "
+	}
+	public def deploy() {
+		echo "Deploying to Servers. executing script from Common repo ... "
+	}
 
 	public void writeVersionToFile(String versionFilePath, String version) {
 		Properties props = new Properties()
