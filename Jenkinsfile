@@ -134,7 +134,7 @@ pipeline {
             }
         }
 
-    }
+    
 	post {
         //success {
         	//script {
