@@ -82,9 +82,9 @@ package com.company.project;
 			subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 			body: '${JELLY_SCRIPT, template="html"}',
 			mimeType: 'text/html',
-			to: "santoshdevops@santoshdevops.com",
-			from: "company project DevOps <vz.project.devops@company.com>",
-			replyTo: "santoshdevops@company.com",
+			to: "vallab.v@gmail.com",
+			from: "company project DevOps <project.devops@company.com>",
+			replyTo: "vallab.v@gmail.com",
 			//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 		)
 	}
@@ -94,9 +94,9 @@ package com.company.project;
 			subject: "Failure: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 			body: '${JELLY_SCRIPT, template="html"}',
 			mimeType: 'text/html',
-			to: "santoshdevops@company.com",
-			from: "company project DevOps <vz.project.devops@company.com>",
-			replyTo: "santoshdevops@company.com",
+			to: "vallab.v@gmail.com",
+			from: "company project DevOps <project.devops@company.com>",
+			replyTo: "vallab.v@gmail.com",
 			//recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'CulpritsRecipientProvider'],
 				//[$class: 'FailingTestSuspectsRecipientProvider'], [$class: 'RequesterRecipientProvider'], [$class: 'UpstreamComitterRecipientProvider']]
 		)
@@ -107,9 +107,9 @@ package com.company.project;
 			subject: "Build Release: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 			body: "URL: $artifactUrl",
 			mimeType: 'text/html',
-			to: "santoshdevops@company.com",
-			from: "company project DevOps <vz.project.devops@company.com>",
-			replyTo: "santoshdevops@company.com",
+			to: "vallab.v@gmail.com",
+			from: "company project DevOps <project.devops@company.com>",
+			replyTo: "vallab.v@gmail.com",
 			//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 		)
 	}
