@@ -22,6 +22,7 @@ package com.company.project;
 	public def buildSourceCode() {
 		echo "Building the Source code. executing script from Common repo ... "
 	
+		echo "Starting the poweshell script ... "
 		PowerShell(". '.\\build.PS1'") 			
 	
 	
