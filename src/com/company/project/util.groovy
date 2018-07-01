@@ -12,9 +12,20 @@ package com.company.project;
 		return commitMessage
 	}
 	
-	
+
+
+	public def PowerShell(psCmd) {
+	    psCmd=psCmd.replaceAll("%", "%%")
+	        bat "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"\$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;$psCmd;EXIT \$global:LastExitCode\""
+		}
+
 	public def buildSourceCode() {
 		echo "Building the Source code. executing script from Common repo ... "
+	
+		PowerShell(". '.\\build.PS1'") 			
+	
+	
+	
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "
@@ -38,44 +49,6 @@ package com.company.project;
 		dis.close()
 	}
 
-	public def incrementVersion(String version, String message) {
-		message = message.substring(0,2)
-		def versionSplit = version.split('\\.')
-		def us = versionSplit[0]
-		def cr = versionSplit[1]
-		def tr = versionSplit[2]
-		if(message.equalsIgnoreCase("us")) {
-			us = us.toInteger()+1
-			us = us.toString()
-			if(us.length()>1) {
-				version = us+".00.00"
-			}
-			else {
-				version = "0"+us+".00.00"
-			}
-		}
-		else if(message.equalsIgnoreCase("cr")) {
-			cr = cr.toInteger()+1
-			cr = cr.toString()
-			if(cr.length()>1) {
-				version = us+"."+cr+".00"
-			}
-			else {
-				version = us+".0"+cr+".00"
-			}
-		}
-		else if(message.equalsIgnoreCase("tr")) {
-			tr = tr.toInteger()+1
-			tr = tr.toString()
-			if(tr.length()>1) {
-				version = us+"."+cr+"."+tr
-			}
-			else {
-				version = us+"."+cr+".0"+tr
-			}
-		}
-		return version
-	}
 
 	public void notifySuccess() {
 		emailext (
@@ -114,17 +87,3 @@ package com.company.project;
 		)
 	}
 
-	public void gerritWorkflowNotification(String to, String from, String replyTo) {
-		emailext (
-			subject: "Build Release: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-			body: "Build is verified by Jenkins successfully",
-			mimeType: 'text/html',
-			to: "$to",
-			from: "$from",
-			replyTo: "$replyTo",
-			//recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-		)
-	}
-	public void qualityGateVote(String gerritServer, String gerritPort, String change, String patch, String lable, String message) {
-		sh " ssh -p ${gerritPort} jenkins@${gerritServer} gerrit review ${change},${patch}  --${lable} +1 --message=${message}"
-	}

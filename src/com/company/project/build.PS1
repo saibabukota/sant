@@ -1,4 +1,5 @@
 # export the common variables from app inputs
+echo "Starting the build for web application ... "
 
 $scriptpath = $MyInvocation.MyCommand.Path
 
