@@ -20,9 +20,11 @@ package com.company.project;
 
 	public def buildSourceCode(arg1,arg2,arg3) {
 		echo "Building the Source code. executing script from Common repo ... "
+		print "XYZ"
 		print arg1
 		print arg2
 		print arg3
+		print "XYZ"
 	
 		echo "Starting the poweshell script for building ... "
 		PowerShell(". '.\\build.PS1 arg1 arg2 arg3'") 			
