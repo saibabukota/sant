@@ -22,8 +22,9 @@ package com.company.project;
 	public def buildSourceCode() {
 		echo "Building the Source code. executing script from Common repo ... "
 	
-		echo "Starting the poweshell script ... "
+		echo "Starting the poweshell script for building ... "
 		PowerShell(". '.\\build.PS1'") 			
+
 	
 	
 	
@@ -34,8 +35,13 @@ package com.company.project;
 	public def uploadToArtifactory() {
 		echo "Uploading to Artifactory. executing script from Common repo ... "
 	}
+	public def create_package() {
+		echo "Starting the poweshell script for creating package ... "
+		PowerShell(". '.\\create_package.PS1'") 			
+	}
 	public def deploy() {
-		echo "Deploying to Servers. executing script from Common repo ... "
+		echo "Starting the poweshell script for extracting packages into web deploy directory ... "
+		PowerShell(". '.\\deploy.PS1'") 			
 	}
 
 	public void writeVersionToFile(String versionFilePath, String version) {
