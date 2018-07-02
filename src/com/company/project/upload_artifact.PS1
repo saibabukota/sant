@@ -1,4 +1,3 @@
-#This script will build the dll from source code 
 # export the common variables from app inputs
 echo "Starting the build for web application ... "
 
@@ -18,32 +17,32 @@ echo -n " "
 pwd
 
 
-# call the build script
+# call the create artifact
 
 
 echo -n " ";
 
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-echo "Starting execution of build script XYZ ... "
+echo "Starting execution of create artifact XYZ ... "
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 
 echo "executing C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.com' $SOLUTION_FILE -build ... "
-& 'C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.com' $SOLUTION_FILE -build
+#& 'C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.com' $SOLUTION_FILE -build
 
 if ( $? )
 {
-echo "Build script is executed successfully."
+echo "Upload artifact script is executed successfully."
 exit 0
 }
 else
 {
-echo "Build script is FAILED."
+echo "Upload artifact script is FAILED."
 exit 1
 }
 
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-echo "Execution of build script is completed "
+echo "Execution of create artifact is completed "
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 echo -n " "

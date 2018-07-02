@@ -1,5 +1,5 @@
 # export the common variables from app inputs
-
+# script to extract zip file to deploy directory for IIS
 $scriptpath = $MyInvocation.MyCommand.Path
 
 $dir = Split-Path $scriptpath

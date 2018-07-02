@@ -9,7 +9,7 @@ cd $dir
 
 cd ../..
 
-. ./inputs.yaml
+. ./inputs.PS1
 
 
 echo -n " "

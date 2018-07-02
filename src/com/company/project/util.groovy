@@ -26,9 +26,11 @@ package com.company.project;
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "
+		PowerShell(". '.\\unit_tests.PS1'") 			
 	}
 	public def uploadToArtifactory() {
 		echo "Uploading to Artifactory. executing script from Common repo ... "
+		PowerShell(". '.\\upload_artifact.PS1'") 			
 	}
 	public def create_package() {
 		echo "Starting the poweshell script for creating package ... "
