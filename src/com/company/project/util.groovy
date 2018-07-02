@@ -13,7 +13,6 @@ package com.company.project;
 	}
 	
 
-
 	public def PowerShell(psCmd) {
 	    psCmd=psCmd.replaceAll("%", "%%")
 	        bat "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"\$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;$psCmd;EXIT \$global:LastExitCode\""
@@ -24,10 +23,6 @@ package com.company.project;
 	
 		echo "Starting the poweshell script for building ... "
 		PowerShell(". '.\\build.PS1'") 			
-
-	
-	
-	
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "
