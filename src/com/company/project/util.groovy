@@ -18,11 +18,14 @@ package com.company.project;
 	        bat "powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command \"\$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;$psCmd;EXIT \$global:LastExitCode\""
 		}
 
-	public def buildSourceCode() {
+	public def buildSourceCode(arg1,arg2,arg3) {
 		echo "Building the Source code. executing script from Common repo ... "
+		print arg1
+		print arg2
+		print arg3
 	
 		echo "Starting the poweshell script for building ... "
-		PowerShell(". '.\\build.PS1'") 			
+		PowerShell(". '.\\build.PS1 arg1 arg2 arg3'") 			
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "
