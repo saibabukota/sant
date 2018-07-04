@@ -27,7 +27,7 @@ package com.company.project;
 		print "XYZ"
 	
 		echo "Starting the poweshell script for building ... "
-		PowerShell(". '.\\build.PS1 arg1 arg2 arg3'") 			
+		PowerShell(". '.\\C:\\WebApplication1\\build.PS1 arg1 arg2 arg3'") 			
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "

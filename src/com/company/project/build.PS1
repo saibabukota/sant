@@ -1,5 +1,17 @@
 #This script will build the dll from source code 
 # export the common variables from app inputs
+
+
+#Export the common variables
+param(
+[string]$SOLUTION_FILE,
+[string]$PROJECT_FILE,
+[string]$APP_DIR
+
+
+)
+
+
 echo "Starting the build for web application ... "
 
 $scriptpath = $MyInvocation.MyCommand.Path
@@ -9,7 +21,8 @@ $dir = Split-Path $scriptpath
 cd $dir
 
 cd ../..
-. ./inputs.yaml
+
+
 
 echo -n " "
 echo -n " "
