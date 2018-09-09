@@ -23,18 +23,16 @@ function Unzip
 }
 
 echo "Executing Remove-Item D:\\Deploy1\$APP -Force -Recurse ... "
-Remove-Item D:\\Deploy1\$APP -Force -Recurse
+#Remove-Item D:\\Deploy1\$APP -Force -Recurse
 
 echo "Executing new-item D:\\Deploy1\$APP -itemtype directory ..."
-new-item D:\\Deploy1\$APP -itemtype directory
+#new-item D:\\Deploy1\$APP -itemtype directory
 
 echo "Executing Unzip \"D:\$REPO\$APP\obj\Release\Package\$PACKAGE\" \"D:\Deploy1\$APP\" ..."
-Unzip "D:\$REPO\$APP\obj\Release\Package\$PACKAGE" "D:\Deploy1\$APP"
+#Unzip "D:\$REPO\$APP\obj\Release\Package\$PACKAGE" "D:\Deploy1\$APP"
 
 echo "Executing Remove-Item D:\\Deploy\$APP -Force -Recurse ... "
-Remove-Item D:\\Deploy\$APP -Force -Recurse
+#Remove-Item D:\\Deploy\$APP -Force -Recurse
 
 echo "Executing move D:\Deploy1\$APP\Content\D_C\$REPO\$APP\obj\Release\Package\PackageTmp D:\Deploy\$APP ... "
-move D:\Deploy1\$APP\Content\D_C\$REPO\$APP\obj\Release\Package\PackageTmp D:\Deploy\$APP
-
-
+#move D:\Deploy1\$APP\Content\D_C\$REPO\$APP\obj\Release\Package\PackageTmp D:\Deploy\$APP

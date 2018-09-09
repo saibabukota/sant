@@ -23,8 +23,8 @@ echo "Starting execution of Deploy script  ... "
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 
-echo "Executing C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe $PROJECT_FILE  /p:Configuration=Release  /t:Package ... "
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe $PROJECT_FILE  /p:Configuration=Release  /t:Package
+#echo "Executing C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe $PROJECT_FILE  /p:Configuration=Release  /t:Package ... "
+#C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe $PROJECT_FILE  /p:Configuration=Release  /t:Package
 
 if ( $? )
 {
