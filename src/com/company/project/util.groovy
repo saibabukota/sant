@@ -27,23 +27,23 @@ package com.company.project;
 		print "XYZ"
 
 		echo "Starting the poweshell script for building ... "
-#PowerShell(". '.\\C:\\WebApplication1\\build.PS1 arg1 arg2 arg3'")
+//PowerShell(". '.\\C:\\WebApplication1\\build.PS1 arg1 arg2 arg3'")
 	}
 	public def executeUnitTests() {
 		echo "Executing the Unit tests. executing script from Common repo ... "
-#		PowerShell(". '.\\unit_tests.PS1'")
+//		PowerShell(". '.\\unit_tests.PS1'")
 	}
 	public def uploadToArtifactory() {
 		echo "Uploading to Artifactory. executing script from Common repo ... "
-#		PowerShell(". '.\\upload_artifact.PS1'")
+//		PowerShell(". '.\\upload_artifact.PS1'")
 	}
 	public def create_package() {
 		echo "Starting the poweshell script for creating package ... "
-#		PowerShell(". '.\\create_package.PS1'")
+//		PowerShell(". '.\\create_package.PS1'")
 	}
 	public def deploy() {
 		echo "Starting the poweshell script for extracting packages into web deploy directory ... "
-#		PowerShell(". '.\\deploy.PS1'")
+//		PowerShell(". '.\\deploy.PS1'")
 	}
 
 	public void writeVersionToFile(String versionFilePath, String version) {
